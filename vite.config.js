@@ -7,7 +7,7 @@ function link() {
     name: "vite-link-plugin",
     transform(code, id) {
       if (id.endsWith(".link")) {
-        return `export default "${code}"`;
+        return `export default "${code.trim()}"`;
       }
     },
   };
