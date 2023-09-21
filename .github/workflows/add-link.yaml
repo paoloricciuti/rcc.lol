@@ -1,0 +1,32 @@
+name: Add a Link
+on: 
+  workflow_dispatch:
+    inputs:
+      link:
+        description: "The Link to add"
+        required: true
+      slug:
+        description: "The slug"
+        required: true
+jobs:
+  create-pr:
+    name: Create PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Create Link file
+        run: pnpm create-link --link ${{ inputs.link }} --slug ${{ inputs.slug }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Add ${{ inputs.slug }} link
