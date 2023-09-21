@@ -24,6 +24,13 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
+      - uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
       - name: Create Link file
         run: pnpm create-link --link ${{ inputs.link }} --slug ${{ inputs.slug }}
       - name: Create Pull Request
