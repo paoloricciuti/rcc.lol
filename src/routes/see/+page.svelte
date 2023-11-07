@@ -12,8 +12,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data.links as link}
-		<tr><td><a href="https://rcc.lol/{link[0]}">{link[0]}</a></td><td>{link[1]}</td></tr>
+		{#each data.links as link, i}
+		<tr><td><a href="https://rcc.lol/{link}">{link}</a></td><td>{data.counts[i]}</td></tr>
 			
 		{/each}
 	</tbody>
