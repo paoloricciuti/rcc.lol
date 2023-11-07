@@ -8,7 +8,10 @@ export async function load() {
       /\.\.\/\[\[link\]\]\/links\/(?<link>.+)\.link/
     );
     if (matches?.groups) {
-      links.push([matches.groups.link, await kv.get(matches.groups.link)]);
+      links.push([
+        matches.groups.link,
+        (await kv.get(matches.groups.link)) ?? 0,
+      ]);
     }
   }
   return {
