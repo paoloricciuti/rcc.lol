@@ -13,7 +13,7 @@
 	</thead>
 	<tbody>
 		{#each data.links as link, i}
-		<tr><td><a href="https://rcc.lol/{link}">{link}</a></td><td>{data.counts[i]}</td></tr>
+		<tr><td><a href="https://rcc.lol/{link}">{link}</a></td><td>{data.counts[i] ?? 0}</td></tr>
 			
 		{/each}
 	</tbody>
